@@ -1,0 +1,134 @@
+body {
+    background-color: #f8f8f8;
+}
+
+.leftNavSide > .modal-dialog {
+	width: 250px;
+	min-width: 250px;
+	max-width: 250px;
+}
+
+.leftNavSide .modal-footer {
+	width: 250px;
+	min-width: 250px;
+	max-width: 250px;
+}
+
+.leftNavMenuToggle {
+	color: #777;
+}
+
+.leftNavMenuToggle:HOVER {
+	color: #333;
+}
+
+/*--------------------------------- nav toogle start */
+.navtogglediv {
+	position: absolute;
+	background-color: #ccc;
+	z-index: 1000;
+	top:50px;left: 0;right: 0;bottom: 0;
+	text-align: center;
+	filter:alpha(opacity=20);
+	-moz-opacity:0.8;
+	opacity:0.8;
+}
+
+.navtogglediv-show-hide {
+  padding:10px;
+  border:1px solid black;
+  background:#ddd;
+}
+
+.navtogglediv-show-hide {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.navtogglediv-show-hide.ng-hide {
+	filter:alpha(opacity=80);
+	-moz-opacity:0.2;
+	opacity:0.2;
+}
+/*--------------------------------- nav toogle end */
+.leftLockNav-show-hide {
+	-webkit-transition:all linear 0.3s;
+	transition:all linear 0.3s;
+}
+.leftLockNav-show-hide.ng-hide {
+	width:0px;
+}
+
+.form_select{vertical-align:middle;overflow:hidden;display:inline-block;*display:inline;*zoom:1;padding:3px 5px 5px 5px;_padding:2px 2px 6px 5px; height:20px;margin:0;background:#fff;border:1px solid #999;border-radius:2px;}
+.form_select select{width:100px;border:none;font-size:14px;color:#555;}
+.form_select select option{padding:0 5px 0 3px;line-height:24px;font-size:14px;color:#555;}
+.form_select_disabled{border-color:#bec2c5;}
+
+.pagination_select {vertical-align:middle;overflow:hidden;display:inline-block;*display:inline;*zoom:1;padding:3px 5px 5px 5px;_padding:2px 2px 6px 5px; height:20px;margin:0;background:#fff;border:1px solid #999;border-radius:2px;width: 55px;padding: 0px;}
+.pagination_select select {width:100px;border:none;font-size:14px;color:#555;width: 50px;}
+.pagination_select select option{padding:0 5px 0 3px;line-height:24px;font-size:14px;color:#555;}
+
+.html-back{
+  background : #eee url("http://placehold.it/400x300/eee/666&text=HTML") no-repeat center;
+}
+.css-back{
+  background : #eee url("http://placehold.it/400x300/eee/666&text=CSS") no-repeat center;
+
+}
+.js-back{
+  background : #eee url("http://placehold.it/400x300/eee/666&text=JS") no-repeat center;
+}
+
+.glyphicon-chevron-left,
+.glyphicon-chevron-right,
+.glyphicon-chevron-up,
+.glyphicon-chevron-down{
+  color: #aaa;
+}
+
+.steps {
+    width: 100%;
+    display: table;
+    margin: 5px auto 5px;
+    padding: 0;
+    overflow: hidden;
+    list-style: none;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}		
+.steps li {
+    display: table-cell;
+    width: 25%;
+    padding: 8px 8px;
+    color: #ccc;
+    cursor: default;
+    border-left: 1px solid #ddd;
+    background-color: #fafafa;
+}
+.mega-octicon {
+    font-size: 28px;
+}
+.steps li .mega-octicon {
+    float: left;
+    margin-right: 15px;
+    padding-bottom: 0px;
+}
+.steps li .step {
+    display: block;
+}
+.steps li:first-child {
+    border-left: 0;
+}
+.steps li .mega-octicon {
+    float: left;
+    margin-right: 15px;
+    padding-bottom: 5px;
+}
+.steps li.current {
+    background-color: #fff;
+    color: #333;
+}
+.steps .complete {
+    color: #767676;
+}

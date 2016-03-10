@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper    PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"    "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.qingtengzanya.wanghong.dao.mapper.base.WangHongInfoMapper">
+
+	<sql id="BASE_ALL_COLUMN">
+		id,name,wx_no wxNo,wx_friend_no wxFriendNo,wb_friend_no wbFriendNo,wb_link wbLink,area,school,level,remark,type,create_date createDate,update_date updateDate
+	</sql>
+	<insert id="insert" parameterType="com.qingtengzanya.wanghong.dao.entity.WangHongInfoEty">
+		insert into wanghong_info(
+			id,name,wx_no,wx_friend_no,wb_friend_no,wb_link,area,school,level,remark,type,create_date,update_date)
+		values (
+			#{id},#{name},#{wxNo},#{wxFriendNo},#{wbFriendNo},#{wbLink},#{area},#{school},#{level},#{remark},#{type},#{createDate},#{updateDate}
+		)
+	</insert>
+
+	<select id="selectById" parameterType="int" resultType="com.qingtengzanya.wanghong.dao.entity.WangHongInfoEty">
+		select
+		<include refid="BASE_ALL_COLUMN" />
+		from wanghong_info where id=#{id}
+	</select>
+
+	<delete id="deleteById" parameterType="int">
+		DELETE FROM wanghong_info WHERE id=#{id}
+	</delete>
+
+	<select id="selectByEntity" parameterType="com.qingtengzanya.wanghong.dao.entity.WangHongInfoEty" resultType="com.qingtengzanya.wanghong.dao.entity.WangHongInfoEty">
+		SELECT
+		<include refid="BASE_ALL_COLUMN" />
+		from wanghong_info
+		WHERE 1=1 
+		<if test="id != null "> AND id=#{id}</if>
+		<if test="name != null  and name != ''"> AND name=#{name}</if>
+		<if test="wxNo != null  and wxNo != ''"> AND wx_no=#{wxNo}</if>
+		<if test="wxFriendNo != null "> AND wx_friend_no=#{wxFriendNo}</if>
+		<if test="wbFriendNo != null "> AND wb_friend_no=#{wbFriendNo}</if>
+		<if test="wbLink != null  and wbLink != ''"> AND wb_link=#{wbLink}</if>
+		<if test="area != null  and area != ''"> AND area=#{area}</if>
+		<if test="school != null  and school != ''"> AND school=#{school}</if>
+		<if test="level != null "> AND level=#{level}</if>
+		<if test="remark != null  and remark != ''"> AND remark=#{remark}</if>
+		<if test="type != null "> AND type=#{type}</if>
+		<if test="createDate != null "> AND create_date=#{createDate}</if>
+		<if test="updateDate != null "> AND update_date=#{updateDate}</if>
+		<if test="extLimit == null"> order by id desc</if>
+		<if test="extLimit != null">
+			<if test="extLimit.sort == null"> order by id desc</if>
+			<if test="extLimit.sort != null"> order by ${extLimit.sort} ${extLimit.dir}</if>
+			<if test="extLimit.limit != null"> limit ${extLimit.start}, ${extLimit.limit}</if>
+		</if>
+	</select>
+
+	<update id="updateById" parameterType="com.qingtengzanya.wanghong.dao.entity.WangHongInfoEty">
+		UPDATE wanghong_info SET
+		<if test="id != null">id=#{id},</if>
+		<if test="name != null">name=#{name},</if>
+		<if test="wxNo != null">wx_no=#{wxNo},</if>
+		<if test="wxFriendNo != null">wx_friend_no=#{wxFriendNo},</if>
+		<if test="wbFriendNo != null">wb_friend_no=#{wbFriendNo},</if>
+		<if test="wbLink != null">wb_link=#{wbLink},</if>
+		<if test="area != null">area=#{area},</if>
+		<if test="school != null">school=#{school},</if>
+		<if test="level != null">level=#{level},</if>
+		<if test="remark != null">remark=#{remark},</if>
+		<if test="type != null">type=#{type},</if>
+		<if test="createDate != null ">create_date=#{createDate},</if>
+		<if test="updateDate != null ">update_date=#{updateDate},</if>
+		 id=#{id}
+		WHERE
+		 id=#{id}
+	</update>
+
+	<select id="selectByLimit" parameterType="com.qingtengzanya.wanghong.dao.entity.WangHongInfoEty" resultType="com.qingtengzanya.wanghong.dao.entity.WangHongInfoEty">
+		SELECT
+		<include refid="BASE_ALL_COLUMN" />
+		FROM wanghong_info
+		WHERE 1=1 
+		<if test="id != null "> AND id=#{id}</if>
+		<if test="name != null  and name != ''"> AND name=#{name}</if>
+		<if test="wxNo != null  and wxNo != ''"> AND wx_no=#{wxNo}</if>
+		<if test="wxFriendNo != null and wxFriendNoSec != null"> AND wx_friend_no >= #{wxFriendNo} AND <![CDATA[ wx_friend_no <= #{wxFriendNoSec} ]]></if>
+		<if test="wbFriendNo != null and wbFriendNoSec != null"> AND wb_friend_no >= #{wbFriendNo} AND <![CDATA[ wb_friend_no <= #{wbFriendNoSec} ]]></if>
+		<if test="wbLink != null  and wbLink != ''"> AND wb_link=#{wbLink}</if>
+		<if test="area != null  and area != ''"> AND area like #{area}</if>
+		<if test="school != null  and school != ''"> AND school like #{school}</if>
+		<if test="level != null and level != ''"> AND level like #{level}</if>
+		<if test="remark != null  and remark != ''"> AND remark like #{remark}</if>
+		<if test="type != null and type != ''"> AND type like #{type}</if>
+		<if test="createDate != null "> AND create_date=#{createDate}</if>
+		<if test="updateDate != null "> AND update_date=#{updateDate}</if>
+		<if test="extLimit == null"> order by id desc</if>
+		<if test="extLimit != null">
+			<if test="extLimit.sort == null"> order by id desc</if>
+			<if test="extLimit.sort != null"> order by ${extLimit.sort} ${extLimit.dir}</if>
+			<if test="extLimit.limit != null"> limit ${extLimit.start}, ${extLimit.limit}</if>
+		</if>
+	</select>
+
+	<select id="selectLimitCount" parameterType="com.qingtengzanya.wanghong.dao.entity.WangHongInfoEty" resultType="java.lang.Integer">
+		SELECT count(1) from wanghong_info
+		WHERE 1=1 
+		<if test="id != null "> AND id=#{id}</if>
+		<if test="name != null  and name != ''"> AND name=#{name}</if>
+		<if test="wxNo != null  and wxNo != ''"> AND wx_no=#{wxNo}</if>
+		<if test="wxFriendNo != null and wxFriendNoSec != null"> AND wx_friend_no >= #{wxFriendNo} AND <![CDATA[ wx_friend_no <= #{wxFriendNoSec} ]]></if>
+		<if test="wbFriendNo != null and wbFriendNoSec != null"> AND wb_friend_no >= #{wbFriendNo} AND <![CDATA[ wb_friend_no <= #{wbFriendNoSec} ]]></if>
+		<if test="wbLink != null  and wbLink != ''"> AND wb_link=#{wbLink}</if>
+		<if test="area != null  and area != ''"> AND area like #{area}</if>
+		<if test="school != null  and school != ''"> AND school like #{school}</if>
+		<if test="level != null "> AND level like #{level}</if>
+		<if test="remark != null  and remark != ''"> AND remark like #{remark}</if>
+		<if test="type != null "> AND type like #{type}</if>
+		<if test="createDate != null "> AND create_date=#{createDate}</if>
+		<if test="updateDate != null "> AND update_date=#{updateDate}</if>
+	</select>
+
+	<insert id="insertEntityList" parameterType="java.util.List">
+		INSERT INTO wanghong_info (id,name,wx_no,wx_friend_no,wb_friend_no,wb_link,area,school,level,remark,type,create_date,update_date)
+		VALUES
+		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+			#{item.id},#{item.name},#{item.wxNo},#{item.wxFriendNo},#{item.wbFriendNo},#{item.wbLink},#{item.area},#{item.school},#{item.level},#{item.remark},#{item.type},#{item.createDate},#{item.updateDate}
+		</foreach>
+	</insert>
+
+	<select id="selectByIds" parameterType="java.util.List" resultType="com.qingtengzanya.wanghong.dao.entity.WangHongInfoEty">
+		SELECT
+		<include refid="BASE_ALL_COLUMN" />
+		FROM wanghong_info
+		WHERE id IN
+		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+</mapper>

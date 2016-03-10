@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="wanghong:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="wanghong.war">
+      <element id="artifact" artifact-name="wanghong:war exploded" />
+    </root>
+  </artifact>
+</component>
