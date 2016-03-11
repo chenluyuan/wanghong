@@ -3,13 +3,11 @@ package com.qingtengzanya.wanghong.controller.basicinfo;
 import com.ac.util.jsonresult.JsonResult;
 import com.ac.util.jsonresult.JsonResultFactory;
 import com.qingtengzanya.wanghong.dao.entity.WangHongInfoEty;
-import com.qingtengzanya.wanghong.service.WhInfoSearchBean;
 import com.qingtengzanya.wanghong.service.WhInfoService;
-import org.apache.poi.ss.formula.functions.T;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.URLEditor;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +20,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -112,7 +109,15 @@ public class WangHonginfoCtrl {
 			if(whinfos.isEmpty()) {
 				return JsonResultFactory.error("文件内容为空！");
 			}
-			whInfoService.insertEntityList(whinfos);
+			try {
+				whInfoService.insertEntityList(whinfos);
+			}catch (Exception e) {
+				if(e instanceof DuplicateKeyException) {
+					return JsonResultFactory.error("用户姓名和类别重复！");
+				}else {
+					throw e;
+				}
+			}
 			return JsonResultFactory.success();
 		}else {
 			return JsonResultFactory.error("文件上传出错，请重新上传!");
@@ -257,7 +262,15 @@ public class WangHonginfoCtrl {
 		if(wangHongInfoEty.getId() == null) {
 			wangHongInfoEty.setCreateDate(new Date());
 			wangHongInfoEty.setUpdateDate(new Date());
-			whInfoService.insert(wangHongInfoEty);
+			try {
+				whInfoService.insert(wangHongInfoEty);
+			}catch (Exception e) {
+				if(e instanceof DuplicateKeyException) {
+					return JsonResultFactory.error("用户姓名和类别重复！");
+				}else {
+					throw e;
+				}
+			}
 		}
 		else {
 			wangHongInfoEty.setUpdateDate(new Date());
