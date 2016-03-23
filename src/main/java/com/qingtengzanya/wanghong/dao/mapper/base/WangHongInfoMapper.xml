@@ -19,7 +19,7 @@
 		from wanghong_info where id=#{id}
 	</select>
 
-	<delete id="deleteById" parameterType="int">
+	<delete id="deleteById" parameterType="java.lang.Long">
 		DELETE FROM wanghong_info WHERE id=#{id}
 	</delete>
 

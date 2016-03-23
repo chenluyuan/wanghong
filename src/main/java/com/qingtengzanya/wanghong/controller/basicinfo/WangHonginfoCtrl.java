@@ -88,6 +88,9 @@ public class WangHonginfoCtrl {
 			int lastRowNum = sheet.getLastRowNum();
 			for (int i = 1; i <= lastRowNum; i++) {
 				Row row = sheet.getRow(i);
+				if(row == null) {
+					break;
+				}
 				WangHongInfoEty wangHongInfoEty = new WangHongInfoEty();
 				int lastCellNum = row.getLastCellNum();
 				for (int j = 0; j < lastCellNum; j++) {
